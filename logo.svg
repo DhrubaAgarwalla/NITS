@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" width="260" height="60">
+  <defs>
+    <!-- Core Gradients matching the CSS theme -->
+    <linearGradient id="bulbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a085" />
+      <stop offset="100%" stop-color="#f39c12" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a2540" />
+      <stop offset="100%" stop-color="#16a085" />
+    </linearGradient>
+    <linearGradient id="textGradDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#16a085" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Mark (Left part: Icon) -->
+  <g transform="translate(10, 5)">
+    <!-- Gear outer teeth -->
+    <path d="M25 5 L25 10 M39 11 L35 15 M45 25 L40 25 M39 39 L35 35 M25 45 L25 40 M11 39 L15 35 M5 25 L10 25 M11 11 L15 15" stroke="url(#bulbGrad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+    
+    <!-- Outer Ring -->
+    <circle cx="25" cy="25" r="18" stroke="url(#bulbGrad)" stroke-width="2.5" fill="none" />
+    
+    <!-- Incubator Bulb Body -->
+    <path d="M20 32 C17 30, 16 27, 16 23 C16 18, 20 14, 25 14 C30 14, 34 18, 34 23 C34 27, 33 30, 30 32 L30 35 C30 36.5, 29 37.5, 27.5 37.5 L22.5 37.5 C21 37.5, 20 36.5, 20 35 Z" fill="url(#bulbGrad)" />
+    
+    <!-- Filament inside -->
+    <path d="M22 23 L25 20 L28 23" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bulb Base/Screw -->
+    <rect x="21" y="38" width="8" height="2.5" rx="1" fill="#7f8c8d" />
+    <line x1="23" y1="41.5" x2="27" y2="41.5" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Logo Text (Right part) -->
+  <!-- We put both light and dark styles in the vector, toggled by CSS class if needed, or structured neutrally -->
+  <g transform="translate(68, 12)">
+    <!-- Primary Name -->
+    <text x="0" y="20" font-family="'Outfit', 'Inter', sans-serif" font-size="21" font-weight="900" fill="#003366" letter-spacing="-0.5">NITS - FIIE</text>
+    
+    <!-- Descriptor Subtitle -->
+    <text x="0" y="34" font-family="'Inter', sans-serif" font-size="7.5" font-weight="700" fill="#16a085" letter-spacing="1">FOUNDATION FOR INNOVATION</text>
+  </g>
+</svg>
