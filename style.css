@@ -513,12 +513,13 @@ header:not(.sticky) .hamburger span {
    HERO / BANNER SECTION
    ========================================================================= */
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
   color: #ffffff;
   padding-top: calc(var(--header-height) + 50px);
+  padding-bottom: 130px;
   overflow: hidden;
   background-color: var(--brand-primary-dark);
   background-image: url('image.png');
@@ -560,7 +561,14 @@ header:not(.sticky) .hamburger span {
   z-index: 2;
 }
 
+.hero .grid-2 {
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+  gap: clamp(36px, 5vw, 72px);
+}
+
 .hero-content {
+  position: relative;
+  z-index: 3;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -639,104 +647,166 @@ header:not(.sticky) .hamburger span {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 4;
 }
 
-/* Hero Spherical Graphic Floater */
+/* Hero vertical image reel */
 .hero-image-wrapper {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   z-index: 2;
+  min-width: 0;
 }
 
-.hero-spheres {
-  width: 380px;
-  height: 380px;
-  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  animation: morphing 10s ease-in-out infinite;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+.hero-media-reel {
+  width: min(100%, 430px);
   position: relative;
   overflow: hidden;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid var(--brand-secondary);
+  border-radius: 14px;
+  background: rgba(5, 23, 50, 0.94);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
 }
 
-.hero-spheres::after {
-  content: '';
-  position: absolute;
-  inset: 12px;
-  background: var(--brand-primary-dark);
-  border-radius: inherit;
-  z-index: 1;
+.hero-media-reel::before {
+  content: none;
 }
 
-.hero-spheres-content {
-  position: absolute;
-  inset: 0;
+.hero-reel-header,
+.hero-reel-footer {
+  position: relative;
   z-index: 2;
+}
+
+.hero-reel-header {
+  padding: 2px 4px 18px;
+}
+
+.hero-reel-kicker {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--brand-secondary);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.hero-reel-header h2 {
+  max-width: 330px;
+  color: #ffffff;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.hero-reel-viewport {
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.hero-reel-track {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
+  gap: 14px;
+  animation: heroReelScroll 32s linear infinite;
+  will-change: transform;
 }
 
-.hero-spheres-content i {
-  font-size: 3.5rem;
-  background: linear-gradient(135deg, var(--brand-accent), var(--brand-secondary-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-  animation: pulse 3s infinite;
+.hero-media-reel:hover .hero-reel-track {
+  animation-play-state: paused;
 }
 
-.hero-rocket-replacement {
-  max-width: 140px;
-  height: auto;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
-  animation: premiumFloat 6s ease-in-out infinite;
+.hero-reel-card {
+  position: relative;
+  flex: 0 0 164px;
+  min-height: 164px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: #071a37;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 }
 
-@keyframes premiumFloat {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(2deg);
-  }
+.hero-reel-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
 
-.hero-spheres-content h3 {
+.hero-reel-card:hover img {
+  transform: scale(1.025);
+}
+
+.hero-reel-card::after {
+  content: '';
+  position: absolute;
+  inset: 30% 0 0;
+  background: linear-gradient(to bottom, transparent, rgba(3, 12, 28, 0.93));
+  pointer-events: none;
+}
+
+.hero-reel-card figcaption {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 14px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
   color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 8px;
 }
 
-.hero-spheres-content p {
-  color: rgba(255,255,255,0.7);
-  font-size: 0.85rem;
+.hero-reel-card figcaption span {
+  margin-bottom: 2px;
+  color: var(--brand-secondary-light);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.85px;
+  text-transform: uppercase;
 }
 
-@keyframes morphing {
-  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-  34% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
-  67% { border-radius: 50% 60% 30% 70% / 60% 30% 70% 40%; }
-  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+.hero-reel-card figcaption strong {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.06); opacity: 1; }
+.hero-reel-footer {
+  margin-top: 15px;
+  padding: 13px 4px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+@keyframes heroReelScroll {
+  from { transform: translateY(calc(-50% - 7px)); }
+  to { transform: translateY(0); }
 }
 
 /* ==========================================================================
    PILLARS / CORE CARD SECTIONS (GLASSMORPHISM)
    ========================================================================= */
 .pillars-grid {
-  margin-top: -60px;
+  margin-top: -36px;
   position: relative;
   z-index: 10;
 }
@@ -1864,6 +1934,13 @@ footer::before {
   to { opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-reel-track {
+    animation: none;
+    transform: none;
+  }
+}
+
 /* Premium Page Preloader (Top Loader) */
 #page-preloader {
   position: fixed;
@@ -1924,6 +2001,29 @@ footer::before {
   
   .hero {
     padding-top: calc(var(--header-height) + 20px);
+    padding-bottom: 110px;
+  }
+
+  .hero .grid-2 {
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 32px;
+  }
+
+  .hero-media-reel {
+    padding: 17px;
+  }
+
+  .hero-reel-header {
+    padding-bottom: 14px;
+  }
+
+  .hero-reel-viewport {
+    height: 400px;
+  }
+
+  .hero-reel-card {
+    flex-basis: 148px;
+    min-height: 148px;
   }
   
   .hero-content {
@@ -1952,11 +2052,16 @@ footer::before {
   .hero {
     padding-top: calc(var(--header-height) + 90px) !important;
     min-height: auto;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
   }
   
   .hero-image-wrapper {
     display: none !important;
+  }
+
+  .hero .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
   
   .grid-2 {

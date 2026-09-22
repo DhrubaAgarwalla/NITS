@@ -3,6 +3,17 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Duplicate the five hero highlights once for a seamless vertical loop.
+  const heroReelTrack = document.querySelector('.hero-reel-track');
+  if (heroReelTrack) {
+    Array.from(heroReelTrack.children).forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('img').forEach(image => image.setAttribute('alt', ''));
+      heroReelTrack.appendChild(clone);
+    });
+  }
+
   // --- PREMIUM DYNAMIC TOP PAGE LOADER ---
   const loader = document.createElement('div');
   loader.id = 'page-preloader';
